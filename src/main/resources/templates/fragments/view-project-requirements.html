@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="tab-pane fade" id="project-requirements" role="tabpanel" aria-labelledby="home-tab" th:fragment="view-project-requirements">
+
+    <div class="container-fluid" style="padding: 0;">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 style="float: left;">Functional Requirements</h4>
+                <button style="float: right;" class="btn btn-labeled btn-success open-createFunctionalRequirementModal" data-toggle="modal" data-target="#createFunctionalRequirementModal" th:attr="data-id=${project.id}">
+                    <span class="btn-label"><i class="fa fa-plus"></i></span>Add Requirement
+                </button>
+                <table id="functionalReqTable" class="display">
+                    <thead>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="functionalRequirement : ${functionalRequirements}">
+                        <td th:text="${functionalRequirement.requirement}"></td>
+                        <td>
+                            <div class="row" style="margin-left: 5px;">
+                                <form style="display:inline;" th:action="@{/delete-functional-requirement}" method="post">
+                                    <input type="hidden" name="functionalRequirementId" th:value="${functionalRequirement.id}"/>
+                                    <button title="Delete Requirement" type="submit" class="invisible-button">
+                                        <i class="far fa-trash-alt fa-lg trashHover"></i>
+                                    </button>
+                                    <input type="hidden" name="projectId" th:value="${project.id}"/>
+                                </form>
+                                <button title="Edit Requirement" class="invisible-button open-editFunctionalRequirementModal" data-toggle="modal" data-target="#editFunctionalRequirementModal"
+                                        th:attr="data-id=${project.id},data-requirement=${functionalRequirement.requirement},data-requirement-id=${functionalRequirement.id}">
+                                    <i class="far fa-edit fa-lg editHover"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 style="float: left;">Non-Functional Requirements</h4>
+                <button style="float: right;" class="btn btn-labeled btn-success open-createNonFunctionalRequirementModal" data-toggle="modal" data-target="#createNonFunctionalRequirementModal" th:attr="data-id=${project.id}">
+                    <span class="btn-label"><i class="fa fa-plus"></i></span>Add Requirement
+                </button>
+                <table id="nonFunctionalReqTable" class="display">
+                    <thead>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="nonFunctionalRequirement : ${nonFunctionalRequirements}">
+                        <td th:text="${nonFunctionalRequirement.requirement}"></td>
+                        <td>
+                            <div class="row" style="margin-left: 5px;">
+                                <form style="display:inline;" th:action="@{/delete-non-functional-requirement}" method="post">
+                                    <input type="hidden" name="nonFunctionalRequirementId" th:value="${nonFunctionalRequirement.id}"/>
+                                    <button title="Delete Requirement" type="submit" class="invisible-button">
+                                        <i class="far fa-trash-alt fa-lg trashHover"></i>
+                                    </button>
+                                    <input type="hidden" name="projectId" th:value="${project.id}"/>
+                                </form>
+                                <button title="Edit Requirement" class="invisible-button open-editNonFunctionalRequirementModal" data-toggle="modal" data-target="#editNonFunctionalRequirementModal"
+                                        th:attr="data-id=${project.id},data-requirement=${nonFunctionalRequirement.requirement},data-requirement-id=${nonFunctionalRequirement.id}">
+                                    <i class="far fa-edit fa-lg editHover"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

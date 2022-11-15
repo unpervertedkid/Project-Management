@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Project Management System</title>
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/core.css}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.css}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css">
+
+    <script src="https://kit.fontawesome.com/797e60a2e0.js" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <div th:replace="fragments/sidebar-project :: sidebar-project"></div>
+
+    <!-- Main Page Content  -->
+    <div id="content">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="colored" th:text="${project.name}" style="margin-bottom: 15px; float: left;"></h1>
+                <form id="deleteProjectForm" style="float: right;" th:action="@{/delete-project}" th:object="${project}" method="post">
+                    <input type="hidden" th:field="*{id}" />
+                    <button type="submit" id="deleteProjectBtn" class="btn btn-labeled btn-danger">
+                        <span class="btn-label"><i class="fa fa-trash"></i></span>Delete Project
+                    </button>
+                </form>
+            </div>
+        </div>
+        <ul class="nav nav-pills" id="myTab" role="tablist">
+            <li class="nav-item active">
+                <a class="nav-link general-tab" id="general-tab" data-toggle="pill" href="#general" role="tab" aria-controls="home" aria-selected="true">General</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="project-requirements-tab" data-toggle="pill" href="#project-requirements" role="tab" aria-controls="profile" aria-selected="false">Project Requirements</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="project-monitoring-tab" data-toggle="pill" href="#project-monitoring" role="tab" aria-controls="contact" aria-selected="false">Project Monitoring & Tracking</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="line"></div>
+            <div th:replace="fragments/view-general :: view-general"></div>
+            <div th:replace="fragments/view-project-requirements :: view-project-requirements"></div>
+            <div th:replace="fragments/view-project-monitoring :: view-project-monitoring"></div>
+        </div>
+    </div>
+
+    <p style="display: none" id="projectId" th:text="${project.id}"></p>
+
+    <div th:replace="fragments/create-project-modal :: create-project-modal"></div>
+    <div th:replace="fragments/create-risk-modal :: create-risk-modal"></div>
+    <div th:replace="fragments/create-team-member-modal :: create-team-member-modal"></div>
+    <div th:replace="fragments/edit-team-member-modal :: edit-team-member-modal"></div>
+    <div th:replace="fragments/edit-risk-modal :: edit-risk-modal"></div>
+    <div th:replace="fragments/create-functional-requirement-modal :: create-functional-requirement-modal"></div>
+    <div th:replace="fragments/edit-functional-requirement-modal :: edit-functional-requirement-modal"></div>
+    <div th:replace="fragments/create-non-functional-requirement-modal :: create-non-functional-requirement-modal"></div>
+    <div th:replace="fragments/edit-non-functional-requirement-modal :: edit-non-functional-requirement-modal"></div>
+    <div th:replace="fragments/edit-effort-modal :: edit-effort-modal"></div>
+
+</div>
+
+
+<!-- jQuery CDN - minified version (with AJAX) -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+
+
+<script th:src="@{/js/datatables.js}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+<script>
+    $(function () {
+
+        $('.initDate[data-toggle="datepicker"]').datepicker( {
+            setDate: new Date(),
+            autoPick: true
+        });
+
+        $('.editDate[data-toggle="datepicker"]').datepicker();
+
+        $('#createProjectBtn').on('click', function() {
+            $('#general-tab').tab('show');
+        });
+
+        $('.project-side').click(function() {
+            localStorage.clear();
+        });
+
+
+
+        $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+            localStorage.setItem('lastTab', $(this).attr('href'));
+        });
+
+        var lastTab = localStorage.getItem('lastTab');
+        if (lastTab) {
+            $('[href="' + lastTab + '"]').tab('show');
+        } else {
+            $('#general-tab').tab('show');
+        }
+
+        // Datatable initialization
+
+        $('tfoot th.search-filter').each( function () {
+            $(this).html( '<input type="text" />' );
+        } );
+
+        var table = $('#riskDatatable').DataTable({
+            "language": {
+                "lengthMenu": 'Show <select>'+
+                    '<option value="10">10</option>'+
+                    '<option value="25">25</option>'+
+                    '<option value="50">50</option>'+
+                    '<option value="-1">All</option>'+
+                    '</select> risks'
+            },
+            sDom: 'lrtip',
+            order: []
+        });
+
+        // Search for footer on risk table
+        table.columns().every( function () {
+            var that = this;
+            $('input', this.footer()).on('keyup change clear', function() {
+                if (that.search() !== this.value) {
+                    that.search(this.value).draw();
+                }
+            });
+        });
+
+        // ******************************************
+
+        var teamTable = $('#teamTable').DataTable({
+            iDisplayLength: 5,
+            "language": {
+                "lengthMenu": 'Show <select>'+
+                    '<option value="5">5</option>'+
+                    '<option value="10">10</option>'+
+                    '<option value="50">50</option>'+
+                    '<option value="-1">All</option>'+
+                    '</select> Team Members'
+            },
+            sDom: 'lrtip',
+            order: []
+        });
+
+        // ******************************************
+
+        var functionalReqTable = $('#functionalReqTable').DataTable({
+
+            iDisplayLength: 10,
+            "language": {
+                "lengthMenu": 'Show <select>'+
+                    '<option value="10">10</option>'+
+                    '<option value="25">25</option>'+
+                    '<option value="50">50</option>'+
+                    '<option value="-1">All</option>'+
+                    '</select> Requirements'
+            },
+            sDom: 'lrtip',
+            order: []
+
+        });
+
+        // ******************************************
+
+        var nonFunctionalReqTable = $('#nonFunctionalReqTable').DataTable({
+
+            iDisplayLength: 10,
+            "language": {
+                "lengthMenu": 'Show <select>'+
+                    '<option value="10">10</option>'+
+                    '<option value="25">25</option>'+
+                    '<option value="50">50</option>'+
+                    '<option value="-1">All</option>'+
+                    '</select> Requirements'
+            },
+            sDom: 'lrtip',
+            order: []
+
+        });
+
+        // ******************************************
+
+        var trackedEffortTable = $('#trackedEffortTable').DataTable({
+
+            iDisplayLength: 10,
+            "language": {
+                "lengthMenu": 'Show <select>'+
+                    '<option value="10">10</option>'+
+                    '<option value="25">25</option>'+
+                    '<option value="50">50</option>'+
+                    '<option value="-1">All</option>'+
+                    '</select> entries'
+            },
+            sDom: 'lrtip',
+            order: []
+
+        });
+
+        // ******************************************
+
+
+        // DESCRIPTION EDIT & SAVE
+        $('#editDescriptionBtn').click(function(){
+            $('#editDescriptionBtn').hide();
+            $('#description').each(function(){
+                var content = $(this).text();
+                $(this).html('<textarea id="descriptionTextArea" class="form-control editTextArea">' + content + '</textarea>');
+            });
+
+            $('#saveDescription').show();
+        });
+
+        var descriptionContent;
+
+        $('#saveDescription').click(function(){
+            $('#saveDescription').hide();
+            $('#descriptionTextArea').each(function(){
+                descriptionContent = $(this).val();
+                $(this).html(descriptionContent);
+                $(this).contents().unwrap();
+                if(!$(this).val()) {
+                    $(this).hide();
+                }
+            });
+
+            $('#editDescriptionBtn').show();
+
+            $.ajax({
+                type: "GET",
+                url: "/update-description",
+                data: {
+                    description: descriptionContent,
+                    projectId: $('#projectId').text()
+                 },
+                success: function (result) {
+                    console.log("Description update: SUCCESS")
+                }
+            });
+        });
+
+        // ********************************************
+
+        // PROJECT MANAGER EDIT & SAVE
+        $('#editPMBtn').click(function(){
+            $('#editPMBtn').hide();
+            $('#projectManager').each(function(){
+                var content = $(this).text();
+                $(this).html('<textarea id="pmTextArea" class="form-control editTextArea">' + content + '</textarea>');
+            });
+
+            $('#savePMBtn').show();
+        });
+
+        var pmContent;
+
+        $('#savePMBtn').click(function(){
+            $('#savePMBtn').hide();
+            $('#pmTextArea').each(function(){
+                pmContent = $(this).val();
+                $(this).html(pmContent);
+                $(this).contents().unwrap();
+                if(!$(this).val()) {
+                    $(this).hide();
+                }
+            });
+
+            $('#editPMBtn').show();
+
+            $.ajax({
+                type: "GET",
+                url: "/update-project-manager",
+                data: {
+                    projectmanager: pmContent,
+                    projectId: $('#projectId').text()
+                },
+                success: function (result) {
+                    console.log("PM update: SUCCESS")
+                }
+            });
+        });
+    });
+
+    $(document).on("click", ".open-createRiskModal", function () {
+
+        var id = $(this).data("id");
+        $(".modal-body #projectIdHidden").val(id);
+
+    });
+
+    $(document).on("click", ".open-createTeamMemberModal", function () {
+
+        var id = $(this).data("id");
+        $(".modal-body #projectIdHidden").val(id);
+
+    });
+
+    $(document).on("click", ".open-editTeamMemberModal", function () {
+
+        var id = $(this).data("id");
+        var name = $(this).data("name");
+        var role = $(this).data("role");
+        var teamMemberId = $(this).data("teamMemberId");
+
+        $(".modal-body #projectIdHidden").val(id);
+        $(".modal-body #edit-team-member-name").val(name);
+        $(".modal-body #edit-team-member-role").val(role);
+        $(".modal-body #teamMemberId").val(teamMemberId);
+
+    });
+
+    $(document).on("click", ".open-editRiskModal", function () {
+
+        var projectId = $(this).data("id");
+        var status = $(this).data("status");
+        var description = $(this).data("description");
+        var riskId = $(this).data("riskId");
+
+        $(".modal-body #projectIdHidden").val(projectId);
+        $(".modal-body #edit-status").val(status).change();
+        $(".modal-body #edit-description").val(description);
+        $(".modal-body #riskId").val(riskId);
+
+    });
+
+    $(document).on("click", ".open-createFunctionalRequirementModal", function () {
+
+        var projectId = $(this).data("id");
+
+        $(".modal-body #projectIdHidden").val(projectId);
+
+    });
+
+    $(document).on("click", ".open-editFunctionalRequirementModal", function () {
+
+        var projectId = $(this).data("id");
+        var requirement = $(this).data("requirement");
+        var requirementId = $(this).data("requirementId");
+
+        $(".modal-body #projectIdHidden").val(projectId);
+        $(".modal-body #functionalRequirement").val(requirement);
+        $(".modal-body #requirementId").val(requirementId);
+
+    });
+
+    $(document).on("click", ".open-createNonFunctionalRequirementModal", function () {
+
+        var projectId = $(this).data("id");
+        $(".modal-body #projectIdHidden").val(projectId);
+
+    });
+
+    $(document).on("click", ".open-editNonFunctionalRequirementModal", function () {
+
+        var projectId = $(this).data("id");
+        var requirement = $(this).data("requirement");
+        var requirementId = $(this).data("requirementId");
+
+        $(".modal-body #projectIdHidden").val(projectId);
+        $(".modal-body #nonFunctionalRequirement").val(requirement);
+        $(".modal-body #requirementId").val(requirementId);
+
+    });
+
+    $(document).on("click", ".open-editEffortModal", function () {
+
+        var projectId = $(this).data("id");
+        var effortId = $(this).data("effortId");
+        var reqAnalysisHours = $(this).data("reqAnalysis");
+        var designingHours = $(this).data("designing");
+        var codingHours = $(this).data("coding");
+        var testingHours = $(this).data("testing");
+        var projectMgtHours = $(this).data("projectMgt");
+
+        $(".modal-body #projectIdHidden").val(projectId);
+        $(".modal-body #effortId").val(effortId);
+        $(".modal-body #editRequirementsAnalysis").val(reqAnalysisHours);
+        $(".modal-body #editDesigning").val(designingHours);
+        $(".modal-body #editCoding").val(codingHours);
+        $(".modal-body #editTesting").val(testingHours);
+        $(".modal-body #editProjectManagement").val(projectMgtHours);
+
+
+    });
+
+
+    $(function () {
+       $('#deleteProjectBtn').click(function (event) {
+           if(confirm("Are you sure you want to delete this project?\nOnce it is deleted, it is gone forever.")) {
+               $('#deleteProjectForm').submit();
+           } else {
+               event.preventDefault();
+           }
+       });
+
+        $('#deleteRiskBtn').click(function (event) {
+            if(confirm("Are you sure you want to delete this risk?")) {
+                $('#deleteRiskForm').submit();
+            } else {
+                event.preventDefault();
+            }
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

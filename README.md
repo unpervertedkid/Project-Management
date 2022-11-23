@@ -94,17 +94,16 @@ Collaboration tools
 
 ## Software Design
 The main components of the software are:
-- User
+### Dashboard
 - Team 
 - Project
 - Task
-The above components should have following
-- User
+### User 
+- Name
+- Email
 - Username
 - Password
-- Name 
-- Email
-Here's a breakdown of the main components.
+- Role
  ### Team
 - Id
 - Name 

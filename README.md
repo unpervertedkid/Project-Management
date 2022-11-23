@@ -117,5 +117,13 @@ Project
 - Date to be finished by
 - Description
 - Members (the ones to do the tasks) (can be one or many)
+Project Creation
+- Project Name
+- Project Description
+- Project Manager
+Project Tracking
+- Date created
+- Date to be Completed
+- 
 
 

@@ -12,7 +12,7 @@ The Software will enable teams to manage tasks, resources/funds, communicate and
 - [Neville Ghali](https://www.github.com/neville-phillippe)
 - [Kalina Aseyo](https://github.com/KalinaAseyo)
 - [Arnold Odhiambo](https://github.com/ArnoldBilloh)
-- [Jane Apphia](httpa://github.com/JaneApphia)
+- [Jane Apphia](https://github.com/JaneApphia)
 
 ## Roadmap
 The Project will be impemented using the Iterative incremental model.Its SDLC roadmap is as follows:

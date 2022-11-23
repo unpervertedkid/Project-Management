@@ -1,23 +1,18 @@
 # Project Management Software
 
-![Logo](/assets/img/logo.png?raw=true)
-
 A Project Management software for anyone working on a project in any industry; Finance, tech, engineering, construction.
 
 The Software will enable teams to manage tasks, resources/funds, communicate and ultimately achieve the project goals.
 
-Check it out at: [Project Management System](https://strucker.netlify.app/)
+## Builders
 
-## Authors
-
-- [Lennox Matwere](https://www.github.com/strucker-eth/About-me)
+- [Lennox Matwere](https://www.github.com/strucker-eth)
 - [Brian Silah](https://github.com/unpervertedkid)
-- [Valentine Muchoki](https://github.com/strucker-eth/Project-305)
+- [Valentine Muchoki](https://github.com/ValentineMuchoki)
 - [Neville Ghali](https://www.github.com/neville-phillippe)
-- [Kalina Aseyo](https://github.com/strucker-eth/Project-305)
+- [Kalina Aseyo](https://github.com/KalinaAseyo)
 - [Arnold Odhiambo](https://github.com/ArnoldBilloh)
-
-
+- [Jane Apphia](httpa://github.com/JaneApphia)
 
 ## Roadmap
 The Project will be impemented using the Iterative incremental model.Its SDLC roadmap is as follows:
@@ -31,24 +26,20 @@ The Project will be impemented using the Iterative incremental model.Its SDLC ro
 8. System installation.
 9. Software maintainance.
 
-
-
-
- 
+## Technologies
 ## 1. System Conception
 Every project needs a Project Management tool that can easily manage the budget, quality and documentation for projects. 
+This Software is intended for project planning, scheduling, and resource allocation. It enables cost control, budget management, quality management, and document management for project managers (PMs), stakeholders, and users. It may also be used as an administration system. Software for project management is also utilized for stakeholder participation and communication.
 
-The Project Management software will be a web application that will enable teams to manage tasks, resources/funds, communicate and ultimately achieve the project goals.
-
-PMs (Project Managers) can create a project schedule and track the progress.They can also  create a budget and track the project expenses all within one tool.
-The software also involves Stakeholders who can view the project progress and current expenditure from their dashboard.
 
 The software's objectives include:
 
-1. To make Project Planning and Scheduling easier.
-2. To Handle Project-related Information - the project planning software will provide information to team members,Project Managers and stakeholders. 
-3. To provide data analytics and insights - from the software,you can view the deliverables, dependencies, scheduling drivers, and data changes for your project.
-4. Collaboration and communication - to share information and coordinate efforts among project teams to improve participation, progress reporting, and other project-related activities.
+1. Scheduling–The main objective is to schedule a series of events or tasks and the complexity of the schedule can vary considerably depending on how the tool is used.
+2. Dealing with project related information-Project planning software can be expected to provide information to various people or stakeholders, and can be used to measure and justify the level of effort required to complete the project(s).
+3. Gain visibility and insight-Visibility means you can easily find, analyze and report on all types of information about your projects. This introduces features to help you gain visibility of your project's deliverables, dependencies, schedule drivers, and changes to data.
+4. Communicate and collaborate-The project management software enhances information sharing and coordination among project teams for better participation, progress reporting, and collaboration.
+Quality -Software project management activity must be highly organized and thoroughly planned. Efficient project management software will greatly improve the overall output.
+
 
     Therefore,the Software will handle:
 - Task management.

@@ -15,7 +15,7 @@ The Software will enable teams to manage tasks, resources/funds, communicate and
 - [Jane Apphia](https://github.com/JaneApphia)
 
 ## Roadmap
-The Project will be impemented using the Iterative incremental model.Its SDLC roadmap is as follows:
+The Project will be impemented using the Agile Development model.Its SDLC roadmap is as follows:
 1. System conception.
 2. Requirement specification.
 3. Software design.
@@ -27,7 +27,26 @@ The Project will be impemented using the Iterative incremental model.Its SDLC ro
 9. Software maintainance.
 
 ## Technologies
-## 1. System Conception
+The software is built on the following Stack:
+
+ Front-End
+ - ![Html](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) Html
+- ![Css](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white) Css
+- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E) Javascript
+- ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=plastic&logo=bootstrap&logoColor=white) Bootstrap
+
+
+
+Back-end 
+- ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=plastic&logo=java&logoColor=white) Java-spring boot
+
+Database
+- ![POSTGRESQL](https://img.shields.io/badge/postgresql-%23316192.svg?style=plastic&logo=postgresql&logoColor=white) Postgresql
+
+Version Control
+- ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white) Git
+
+## System Conception
 Every project needs a Project Management tool that can easily manage the budget, quality and documentation for projects. 
 This Software is intended for project planning, scheduling, and resource allocation. It enables cost control, budget management, quality management, and document management for project managers (PMs), stakeholders, and users. It may also be used as an administration system. Software for project management is also utilized for stakeholder participation and communication.
 
@@ -49,7 +68,7 @@ Quality -Software project management activity must be highly organized and thoro
 - Project planning.
 
 
-## 2. Requirement specification
+## Requirement specification
 Planning tools
 - Calendars
 - Gantt charts
@@ -73,7 +92,7 @@ Collaboration tools
 - Tiered access
 
 
-## 3. Software Design
+## Software Design
 The main components of the software are:
 - User
 - Team 
@@ -98,33 +117,5 @@ Project
 - Date to be finished by
 - Description
 - Members (the ones to do the tasks) (can be one or many)
-
-
-# 3.1 Tech Stack
-The software is built on the following Stack:
-
- Front-End
- - ![Html](https://img.shields.io/badge/html5-%23E34F26.svg?style=plastic&logo=html5&logoColor=white) Html
-- ![Css](https://img.shields.io/badge/css3-%231572B6.svg?style=plastic&logo=css3&logoColor=white) Css
-- ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E) Javascript
-- ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=plastic&logo=bootstrap&logoColor=white) Bootstrap
-
-
-
-Back-end 
-- ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=plastic&logo=java&logoColor=white) Java-spring boot
-
-Database
-- ![MariaDB](https://img.shields.io/badge/mariadb-%2300f.svg?style=plastic&logo=mariadb&logoColor=white) MariaDB
-
-Version Control
-- ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white) Git
-
-Hosting 
-- ![Netlify](https://img.shields.io/badge/netlify-%2300C7B7.svg?style=plastic&logo=netlify&logoColor=white) Netlify
-
-
-
-
 
 

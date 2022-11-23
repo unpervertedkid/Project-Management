@@ -105,25 +105,30 @@ The above components should have following
 - Name 
 - Email
 Here's a breakdown of the main components.
-
- Team
+ ### Team
 - Id
 - Name 
 - Description
 - Members
-Project
+### Project
 - Name 
 - Date created
 - Date to be finished by
 - Description
 - Members (the ones to do the tasks) (can be one or many)
-Project Creation
+### Project Creation
 - Project Name
 - Project Description
 - Project Manager
-Project Tracking
+### Project Tracking
 - Date created
 - Date to be Completed
-- 
-
+- Requirements Analysis Hours
+- Design Hours
+- Coding Hours
+- Testing Hours
+- Deployment Hours
+- Total Hours
+- Project Effort Distribution
+- Project Status
 
